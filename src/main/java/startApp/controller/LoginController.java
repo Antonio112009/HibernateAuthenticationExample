@@ -22,10 +22,12 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
 
-        /*  Это проверка того, что пользователь в системе.
+        /*  Это мини-проверка того, что пользователь в системе. Это код получения сессии.
+
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if(!auth.getName().equals("anonymousUser")) {
+                //System.out.println(auth.toString());
                 return new ModelAndView("redirect:/");
             }
         } catch (Exception ignored) {}

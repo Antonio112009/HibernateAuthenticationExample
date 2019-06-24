@@ -44,6 +44,9 @@ public class RegistrationController {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findByUsername(user.getUsername());
 
+        /*
+        В моем примере отсутствует вывод ошибок в html. Еще не дописано
+         */
         if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",

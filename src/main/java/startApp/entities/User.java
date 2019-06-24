@@ -10,7 +10,8 @@ package startApp.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -37,8 +38,16 @@ public class User {
     @Transient
     private String matchingPassword;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private List<Role> roles = new ArrayList<>();
+
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
+    public void removeRole(Role role) {
+        roles.remove(role);
+    }
 
 }

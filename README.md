@@ -1,6 +1,6 @@
-Used techmologies:
+Used technologies:
 - Lombok
 - Spring
 - Java 11
-- Thymeleaf (HTML Engine!??!?!)
+- Thymeleaf
 - Maven

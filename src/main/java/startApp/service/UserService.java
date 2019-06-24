@@ -34,7 +34,7 @@ public class UserService {
     public void saveUser(User user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByRole("USER");
-        user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
+        user.addRole(userRole);
         user.setActive(true);
         userRepository.save(user);
     }
