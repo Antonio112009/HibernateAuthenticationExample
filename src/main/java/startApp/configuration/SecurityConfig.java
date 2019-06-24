@@ -52,18 +52,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/main").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/account/**").hasAuthority("USER")
+                .antMatchers("/admin/**").hasAuthority("ADMIN") //Это пример того, что все файлы внутри "admin" могут быть доступны только Админом
+                .antMatchers("/account/**").hasAuthority("USER") //Это пример того, что все файлы внутри "account" могут быть доступны только Пользователем
                 .anyRequest()
 //                .authenticated().and().csrf().disable().formLogin()
-                .authenticated().and().formLogin()
-                .loginPage("/login").failureUrl("/login?error=true")
+                .authenticated()
+
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error=true")
                 .defaultSuccessUrl("/")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .and().logout()
+
+                .and()
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
+                .logoutSuccessUrl("/")
+
+                .and()
+                .exceptionHandling()
                 .accessDeniedPage("/access-denied");
     }
 
